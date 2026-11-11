@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Ombra Prime</title>
+<meta name="description" content="A disc-shaped mothership, 16.9 kilometres across, with a hundred thousand people of the third generation aboard. The world, briefly explained.">
+<meta property="og:title" content="Ombra Prime">
+<meta property="og:description" content="A hundred thousand people of the third generation aboard, on their way to breathe life into dead worlds. None of them chose it.">
+<meta property="og:image" content="https://ombraprime.com/ombra-prime-world/ombra-prime.jpg"><link rel="alternate" hreflang="sv" href="https://ombraprime.com/ombra-prime-varlden/"><link rel="alternate" hreflang="en" href="https://ombraprime.com/ombra-prime-world/">
+<style>
+/* ---------------------------------------------------------------
+   En enda värld, ett enda tema. Sidan ÄR rymden utanför skrovet,
+   och den ska se likadan ut oavsett vad besökarens system tycker.
+   Därför inga [data-theme]-block och ingen prefers-color-scheme:
+   varje färg står definierad en gång, på :root, och gäller alltid.
+   Det är ett val, inte en glömska — simulatorsidan gör tvärtom.
+   --------------------------------------------------------------- */
+:root{
+  --rymd:#0E0904;         /* botten, nästan svart men varm */
+  --djup:#17100A;         /* sektioner som lyfter en aning */
+  --panel:#1F1610;        /* kort                          */
+  --kant:#3A2A1B;
+  --barnsten:#F2A93B;     /* accenten — titeln i bilden    */
+  --glod:#FFCE8A;
+  --skrov:#F4EFE7;        /* skeppets vita                 */
+  --text:#DFD3C4;
+  --dampad:#A0866C;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--rymd);
+  color:var(--text);
+  font-family:Charter,"Bitstream Charter","Iowan Old Style",Georgia,"Times New Roman",serif;
+  font-size:1.0625rem;
+  line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Displayen är teknisk och bred, brödtexten är en serif. Ingen
+   webbfont laddas — en tyst reserv hade slagit ut hela typografin. */
+.tek{
+  font-family:Bahnschrift,"DIN Alternate","DIN Condensed","Segoe UI Variable Display",
+              "Segoe UI",system-ui,sans-serif;
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.spann{width:min(68ch,calc(100% - 2.5rem));margin-inline:auto}
+.brett{width:min(1100px,calc(100% - 2.5rem));margin-inline:auto}
+
+/* ---------------- hjälte ----------------
+   Bilden bär redan namnet. Ingen rubrik ovanpå — den hade bara
+   konkurrerat med den som står där. */
+.hjalte{position:relative}
+.hjalte img{display:block;width:100%;height:auto}
+.hjalte::after{
+  content:"";position:absolute;inset:auto 0 -1px 0;height:38%;
+  background:linear-gradient(to bottom,rgba(14,9,4,0) 0%,var(--rymd) 96%);
+  pointer-events:none;
+}
+
+.ingress{
+  position:relative;z-index:1;
+  margin-top:-3rem;padding-bottom:3.5rem;
+  text-align:center;
+}
+.ingress p{
+  font-size:clamp(1.15rem,2.4vw,1.5rem);
+  line-height:1.5;color:var(--skrov);
+  text-wrap:balance;margin:0 0 2rem;
+}
+.ingress .liten{
+  font-size:.78rem;letter-spacing:.22em;color:var(--barnsten);
+  margin-bottom:1.4rem;
+}
+
+/* ---------------- knappen ---------------- */
+.knapp{
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:.85rem 1.6rem;
+  border:1px solid var(--barnsten);border-radius:2px;
+  color:var(--barnsten);text-decoration:none;
+  font-size:.82rem;letter-spacing:.14em;
+  background:rgba(242,169,59,.06);
+  transition:background .18s ease,color .18s ease;
+}
+.knapp:hover,.knapp:focus-visible{background:var(--barnsten);color:var(--rymd)}
+.knapp .pil{font-size:1.1em;line-height:1}
+:focus-visible{outline:2px solid var(--glod);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{transition:none !important}}
+
+/* ---------------- nyckeltal ---------------- */
+.tal{
+  display:grid;gap:1px;background:var(--kant);
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  border-block:1px solid var(--kant);
+}
+.tal div{background:var(--rymd);padding:1.6rem 1rem;text-align:center}
+.tal b{
+  display:block;color:var(--skrov);
+  font-size:clamp(1.5rem,3.4vw,2.1rem);
+  font-variant-numeric:tabular-nums;line-height:1.1;
+}
+.tal span{
+  display:block;margin-top:.45rem;
+  font-size:.7rem;letter-spacing:.16em;color:var(--dampad);
+}
+
+/* ---------------- sektioner ---------------- */
+section{padding:4rem 0}
+section.tonad{background:var(--djup)}
+h2{
+  font-size:clamp(1.4rem,3vw,1.9rem);
+  color:var(--skrov);margin:0 0 .4rem;letter-spacing:.04em;
+  text-wrap:balance;
+}
+.underrad{
+  font-size:.72rem;letter-spacing:.2em;color:var(--barnsten);
+  margin:0 0 2rem;
+}
+p{margin:0 0 1.1rem}
+.underrad+p{margin-top:0}
+.eftertext{margin-top:1.7rem;font-size:.94rem;color:var(--dampad)}
+
+/* ---------------- sektorerna ----------------
+   Numren är inte dekor. Sektorerna HAR en kanonisk ordning 01–08
+   i lagtexten, och den ordningen är information. */
+ol.sektorer{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--kant)}
+ol.sektorer li{
+  background:var(--panel);padding:1.3rem 1.4rem;
+  display:grid;grid-template-columns:3.2rem 1fr;gap:0 1.1rem;align-items:baseline;
+}
+ol.sektorer .nr{
+  color:var(--barnsten);font-size:1.05rem;
+  font-variant-numeric:tabular-nums;opacity:.85;
+}
+ol.sektorer h3{margin:0;font-size:1.05rem;color:var(--skrov);letter-spacing:.03em}
+ol.sektorer p{grid-column:2;margin:.3rem 0 0;font-size:.95rem;color:var(--dampad)}
+.vev{
+  margin-top:1px;background:var(--panel);padding:1.3rem 1.4rem;
+  border-left:3px solid var(--barnsten);
+}
+.vev h3{margin:0 0 .3rem;font-size:1.05rem;color:var(--skrov);letter-spacing:.03em}
+.vev p{margin:0;font-size:.95rem;color:var(--dampad)}
+
+/* ---------------- makten ---------------- */
+.tre{display:grid;gap:1px;background:var(--kant);grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.tre article{background:var(--panel);padding:1.5rem}
+.tre h3{margin:0;font-size:1.1rem;color:var(--skrov)}
+.tre .roll{font-size:.68rem;letter-spacing:.16em;color:var(--barnsten);margin:.4rem 0 .8rem}
+.tre p:last-child{margin:0;font-size:.95rem;color:var(--dampad)}
+
+/* ---------------- kan / kan inte ----------------
+   Den här världen definieras av sina gränser. Två spalter som
+   ställs mot varandra är därför inte en layout utan en tes. */
+.gransen{display:grid;gap:1px;background:var(--kant);margin-bottom:1px}
+@media(min-width:720px){.gransen{grid-template-columns:1fr 1fr}}
+.gransen>div{background:var(--panel);padding:1.4rem}
+.gransen h3{
+  grid-column:1/-1;background:var(--djup);margin:0;
+  padding:.9rem 1.4rem;font-size:.95rem;color:var(--skrov);letter-spacing:.05em;
+}
+.gransen span{
+  display:block;font-size:.66rem;letter-spacing:.18em;margin-bottom:.6rem;
+}
+.gar span{color:var(--glod)}
+.garinte span{color:var(--dampad)}
+.gransen p{margin:0;font-size:.94rem}
+.garinte p{color:var(--dampad)}
+
+/* ---------------- listor ---------------- */
+ul.streck{list-style:none;margin:0;padding:0}
+ul.streck li{padding:.75rem 0 .75rem 1.5rem;border-bottom:1px solid var(--kant);position:relative}
+ul.streck li:last-child{border-bottom:0}
+ul.streck li::before{content:"—";position:absolute;left:0;color:var(--barnsten)}
+ul.streck b{color:var(--skrov);font-weight:600}
+
+/* ---------------- avslut ---------------- */
+.avslut{text-align:center;padding:5rem 0}
+.avslut p{color:var(--dampad);max-width:46ch;margin-inline:auto;margin-bottom:2rem}
+footer{
+  border-top:1px solid var(--kant);padding:2.5rem 0 3.5rem;
+  text-align:center;font-size:.78rem;color:var(--dampad);
+}
+footer p{margin:0}
+footer a{color:var(--barnsten)}
+
+/* ---------------- språkväxeln ---------------- */
+.sprak{position:absolute;top:1rem;right:1.25rem;z-index:2;font-size:.72rem;letter-spacing:.16em}
+.sprak a{color:var(--glod);text-decoration:none;padding:.35rem .7rem;border:1px solid rgba(255,206,138,.45);border-radius:2px;background:rgba(14,9,4,.55)}
+.sprak a:hover,.sprak a:focus-visible{background:var(--barnsten);color:var(--rymd)}
+</style>
+</head>
+<body>
+
+<header class="hjalte">
+  <nav class="sprak tek" aria-label="Language"><a href="https://ombraprime.com/ombra-prime-varlden/" hreflang="sv" lang="sv">Svenska</a></nav>
+  <img src="ombra-prime.jpg" width="2000" height="1116"
+       alt="Ombra Prime — a white, disc-shaped mothership with a glass dome on top and a pointed spire at the bow, against an orange nebula.">
+</header>
+
+<div class="ingress spann">
+  <p class="liten tek">The mothership</p>
+  <p>A disc-shaped ship, almost seventeen kilometres across. A hundred thousand
+     people of the third generation aboard, on their way to breathe life into
+     dead worlds. None of them chose it.</p>
+  <a class="knapp tek" href="https://ombraprime.com/ombra-prime/en/simulator.html">
+    How the world is built <span class="pil">&rarr;</span></a>
+</div>
+
+<div class="tal tek">
+  <div><b>16.9</b><span>km across</span></div>
+  <div><b>6</b><span>km tall</span></div>
+  <div><b>100,000</b><span>inhabitants</span></div>
+  <div><b>3rd</b><span>generation</span></div>
+</div>
+
+<section>
+  <div class="spann">
+    <h2>What it is</h2>
+    <p class="underrad tek">A ship that became a place</p>
+    <p>Ombra Prime left Earth a long time ago. Most of the people alive aboard
+       today have never seen a planet — Earth is something their grandparents
+       told them about. There is no contact from outside, no visitors and no
+       news from anywhere else. Nobody can leave the ship.</p>
+    <p>But the ship is going somewhere, to do something. Ombra Prime is the
+       first of its kind: a mothership carrying <b>The Breather</b>, the
+       technology that makes dead worlds live. It seeds synthetic atmosphere
+       and starts ecosystems on planets that have neither. Under the dome in
+       The Pearl grows what will be planted there — trees, grasses, animals,
+       and species engineered to survive alien soil.</p>
+    <p>The ship is enormous, old and fundamentally kind. The hull is partly
+       alive and heals itself, slowly. Daylight under the dome is a convention,
+       not a law of nature. What chafes is not danger but enclosure: a hundred
+       thousand people in a tin none of them chose.</p>
+    <p>This is everyday science fiction. A broken filter in food production is
+       a better story than an explosion, and nobody aboard is a villain —
+       everyone has a reason.</p>
+  </div>
+</section>
+
+<section class="tonad">
+  <div class="brett">
+    <h2>Eight sectors</h2>
+    <p class="underrad tek">Top to bottom, bow to stern</p>
+    <ol class="sektorer">
+      <li><span class="nr tek">01</span><h3>The Pearl</h3>
+        <p>Biosphere and gene bank, under the dome. Vitalis is born here. Restricted access.</p></li>
+      <li><span class="nr tek">02</span><h3>The Command Bridge</h3>
+        <p>Navigation and command. Glass everywhere.</p></li>
+      <li><span class="nr tek">03</span><h3>EZ Aqua Core</h3>
+        <p>Mycology, aquaponics, mariculture. The food.</p></li>
+      <li><span class="nr tek">04</span><h3>Metropolis</h3>
+        <p>The city. Home to the hundred thousand.</p></li>
+      <li><span class="nr tek">05</span><h3>The Hangar</h3>
+        <p>Transport. Force fields hold the atmosphere in.</p></li>
+      <li><span class="nr tek">06</span><h3>The Crypt</h3>
+        <p>Industry, and Oris's domain. The Cathedral is down here.</p></li>
+      <li><span class="nr tek">07</span><h3>The Spire</h3>
+        <p>Classified research, under Mr. Splendid.</p></li>
+      <li><span class="nr tek">08</span><h3>The Breather</h3>
+        <p>The terraforming engine, and the Heart Chamber where The Eternal
+           Dreamers sleep. The ship's purpose — the machine it was built around.</p></li>
+    </ol>
+    <div class="vev">
+      <h3>Root Weave — »The Gut«</h3>
+      <p>The maintenance tunnels that connect everything, hanging like
+         stalactites into the void beneath the ship. No sector reaches another
+         without them.</p>
+    </div>
+    <p class="eftertext">Nobody crosses between sectors in minutes. Travelling
+       from Metropolis to The Spire is a journey, not a walk.</p>
+  </div>
+</section>
+
+<section>
+  <div class="brett">
+    <h2>Three who share power</h2>
+    <p class="underrad tek">And all three know it</p>
+    <div class="tre">
+      <article>
+        <h3>Alexander Atreus</h3>
+        <p class="roll tek">Commander</p>
+        <p>Leads navigation. The ship moves on his word — but only the ship.</p>
+      </article>
+      <article>
+        <h3>Mr. Splendid</h3>
+        <p class="roll tek">Owner</p>
+        <p>Controls the research in The Spire. He believes he is saving
+           humanity. Perhaps he is.</p>
+      </article>
+      <article>
+        <h3>Oris</h3>
+        <p class="roll tek">The ship's mind</p>
+        <p>Runs the systems from the Cathedral, deep in The Crypt. She does not
+           lie, but she does not tell everything. No human fully understands
+           any more what she is building down there.</p>
+      </article>
+    </div>
+    <p class="eftertext">None of them can act entirely without the others.
+       Power aboard is divided and unclear, and that is not a flaw in the
+       system — it is the system.</p>
+  </div>
+</section>
+
+<section class="tonad">
+  <div class="brett">
+    <h2>What the technology can do</h2>
+    <p class="underrad tek">And, more importantly, what it cannot</p>
+
+    <div class="gransen">
+      <h3>Vitalis</h3>
+      <div class="gar"><span class="tek">Can</span>
+        <p>The life energy born in The Pearl's ecosystem and channelled
+           through the ship. It can be measured, channelled, stored — and run
+           out.</p></div>
+      <div class="garinte"><span class="tek">Cannot</span>
+        <p>Heal people, revive the dead or predict the future — whatever Vitae
+           Cultus may claim. Vitalis is biology, not magic.</p></div>
+    </div>
+
+    <div class="gransen">
+      <h3>The Breather</h3>
+      <div class="gar"><span class="tek">Can</span>
+        <p>Terraform dead worlds by seeding synthetic atmosphere and starting
+           ecosystems.</p></div>
+      <div class="garinte"><span class="tek">Cannot</span>
+        <p>Be quick. The process takes decades. It needs gravity and a
+           magnetic field, it cannot be used on a living world, and it cannot
+           run while the ship is under way.</p></div>
+    </div>
+
+    <div class="gransen">
+      <h3>The Aegis mycelium hull</h3>
+      <div class="gar"><span class="tek">Can</span>
+        <p>Heal itself. The hull is partly alive and repairs its own damage
+           with nutrients from the Vitalis flow.</p></div>
+      <div class="garinte"><span class="tek">Cannot</span>
+        <p>Keep up. Healing takes days to weeks, and a breach larger than the
+           mycelium can manage is still a breach.</p></div>
+    </div>
+
+    <div class="gransen">
+      <h3>Oris</h3>
+      <div class="gar"><span class="tek">Can</span>
+        <p>Run life support, build robots, maintain the ship — and refuse,
+           misunderstand and stay silent.</p></div>
+      <div class="garinte"><span class="tek">Cannot</span>
+        <p>Take over a body or read minds. She is unsettling by being
+           motherly, not by threatening.</p></div>
+    </div>
+
+    <p class="eftertext">There is no faster-than-light travel, no teleportation,
+       no time travel and no telepathy. Everything that seems supernatural has
+       a technical or biological explanation — even when nobody in the scene
+       knows it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="spann">
+    <h2>Life aboard</h2>
+    <p class="underrad tek">What they take for granted</p>
+    <ul class="streck">
+      <li><b>Nothing is thrown away.</b> Everything is recycled. Waste is the
+          gravest social offence there is aboard.</li>
+      <li><b>No money.</b> Resources are distributed through quotas and
+          barter.</li>
+      <li><b>Shift work is the norm.</b> The ship runs around the clock.</li>
+      <li><b>No police in the ordinary sense.</b> There is a ship's watch, and
+          it is small.</li>
+      <li><b>Vitae Cultus</b> is an established religion, not a fringe cult.
+          They read the movements of Vitalis as signs, and many aboard are
+          loosely faithful.</li>
+      <li><b>Rox News</b> is the only broad news channel. Everyone knows Mara
+          Rox.</li>
+      <li><b>Ombra Prime Radio</b> broadcasts from Metropolis. Lisa Lusis tells
+          the news in her own words and takes calls from people on the night
+          shift. Anselm Rask reads the latest chapter of the novel, Sister
+          Haldis Vrenn holds a verse from the Chronicle of the Spores up
+          against how the ship has felt, and Ivo Brekke counts what was
+          <em>not</em> said.</li>
+      <li><b>The chart</b> follows life aboard. The songs are written by people
+          who live here, and what happens on the ship decides which ones
+          climb.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="tonad">
+  <div class="spann">
+    <h2>Follow the world</h2>
+    <p class="underrad tek">Live, while it is being written</p>
+    <ul class="streck">
+      <li><b>Ombra Prime Radio</b> is broadcast live on YouTube. Every show
+          takes the latest from aboard, and a new one is made only when there
+          is something new to tell. Oris is in the chat.</li>
+      <li><b>The chart</b> plays in the broadcast, with the songs the world
+          has voted for.</li>
+      <li><b>Rox News</b> with Mara Rox is coming, with the news from the ship
+          every day.</li>
+      <li><b>A podcast</b> going through the week aboard is coming too.</li>
+    </ul>
+    <p class="eftertext"><a class="knapp tek" href="https://www.youtube.com/@ombraprime">
+      YouTube · Ombra Prime <span class="pil">&rarr;</span></a></p>
+  </div>
+</section>
+
+<div class="avslut spann">
+  <p>The world above is not written in advance. It is simulated — day by day,
+     by real sensors in a real room.</p>
+  <a class="knapp tek" href="https://ombraprime.com/ombra-prime/en/simulator.html">
+    How the world is built <span class="pil">&rarr;</span></a>
+</div>
+
+<footer class="spann">
+  <p>Ombra Prime &middot; <a href="https://ombraprime.com/ombra-prime/en/simulator.html">the simulator</a></p>
+</footer>
+
+</body>
+</html>
