@@ -195,6 +195,117 @@ footer a{color:var(--barnsten)}
 .sprak{position:absolute;top:1rem;right:1.25rem;z-index:2;font-size:.72rem;letter-spacing:.16em}
 .sprak a{color:var(--glod);text-decoration:none;padding:.35rem .7rem;border:1px solid rgba(255,206,138,.45);border-radius:2px;background:rgba(14,9,4,.55)}
 .sprak a:hover,.sprak a:focus-visible{background:var(--barnsten);color:var(--rymd)}
+
+  /* Linjeteckningarna (20 november 2026): ritade i sidans egna färger. */
+  .bild { margin: 40px 0 0; }
+  .bild svg { display: block; width: 100%; height: auto; }
+  .bild figcaption { margin-top: 12px; font: 500 12.5px/1.5 var(--sans); letter-spacing: .06em; color: var(--muted); }
+  .bild .l, .pikt .l { fill: none; stroke: var(--amber); stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
+  .bild .l2, .pikt .l2 { fill: none; stroke: var(--line-2); stroke-width: 1.1; stroke-linejoin: round; stroke-linecap: round; }
+  .bild .l3, .pikt .l3 { fill: none; stroke: var(--muted); stroke-width: 1.1; stroke-linejoin: round; stroke-linecap: round; }
+  .bild .f, .pikt .f { fill: rgba(242, 169, 59, .07); stroke: var(--amber); stroke-width: 1.4; stroke-linejoin: round; }
+  .bild .f2, .pikt .f2 { fill: var(--surface); stroke: var(--line-2); stroke-width: 1.1; stroke-linejoin: round; }
+  .bild .g, .pikt .g { fill: var(--amber-2); }
+  .bild .gr, .pikt .gr { fill: var(--good); }
+  .bild .lg, .pikt .lg { fill: none; stroke: var(--good); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .bild .t, .pikt .t { font: 600 12px var(--sans); letter-spacing: .16em; fill: var(--dim); }
+  .bild .tn, .pikt .tn { font: 600 12px var(--mono); fill: var(--amber); }
+  .bild .ts, .pikt .ts { font: 500 11px var(--sans); letter-spacing: .06em; fill: var(--muted); }
+
+  /* Teckningarna rör sig (20 november 2026). Bara för den som inte bett
+     webbläsaren om mindre rörelse. Allt går i långsamma varv. */
+  @media (prefers-reduced-motion: no-preference) {
+    .pikt *, .bild svg * { transform-box: fill-box; transform-origin: center; }
+    .a-spin   { animation: a-spin 9s linear infinite; }
+    .a-pulse  { animation: a-pulse 2.6s ease-in-out infinite; }
+    .a-glow   { animation: a-glow 3.4s ease-in-out infinite; }
+    .a-halo   { animation: a-halo 2.6s ease-in-out infinite; }
+    .a-flow   { stroke-dasharray: 4 5; animation: a-flow 1.4s linear infinite; }
+    .a-climb  { animation: a-climb 6s steps(1, end) infinite; }
+    .a-lift   { animation: a-lift 5s ease-in-out infinite; }
+    .a-beat   { stroke-dasharray: 150; animation: a-beat 5s ease-in-out infinite; }
+    .a-blink  { animation: a-blink 5s ease-in-out infinite; }
+    .a-s1, .a-s2, .a-s3, .a-s4, .a-s5 { animation: a-step 7.5s ease-in-out infinite; }
+    .a-s2 { animation-delay: .9s; } .a-s3 { animation-delay: 1.8s; }
+    .a-s4 { animation-delay: 2.7s; } .a-s5 { animation-delay: 3.6s; }
+    .a-p1, .a-p2, .a-p3, .a-p4, .a-p5 { animation: a-page 6s ease-in-out infinite; }
+    .a-p2 { animation-delay: .35s; } .a-p3 { animation-delay: .7s; }
+    .a-p4 { animation-delay: 1.05s; } .a-p5 { animation-delay: 1.4s; }
+    .a-book   { animation: a-book 6s ease-in-out infinite; }
+    .a-star   { animation: a-twinkle 4s ease-in-out infinite; }
+  }
+  @keyframes a-spin    { to { transform: rotate(360deg); } }
+  @keyframes a-pulse   { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.35); opacity: .55; } }
+  @keyframes a-glow    { 0%, 100% { opacity: .05; } 50% { opacity: .13; } }
+  @keyframes a-halo    { 0%, 100% { transform: scale(.9); opacity: .07; } 50% { transform: scale(1.25); opacity: .2; } }
+  @keyframes a-flow    { to { stroke-dashoffset: -18; } }
+  @keyframes a-climb   { 0% { transform: translate(0, 0); } 20% { transform: translate(44px, -12px); }
+                         40% { transform: translate(88px, -24px); } 60% { transform: translate(132px, -36px); }
+                         80%, 100% { transform: translate(176px, -48px); } }
+  @keyframes a-lift    { 0%, 15% { transform: translateY(51px); opacity: .25; } 45%, 85% { transform: translateY(0); opacity: 1; }
+                         100% { transform: translateY(51px); opacity: .25; } }
+  @keyframes a-beat    { 0% { stroke-dashoffset: 150; } 35%, 100% { stroke-dashoffset: 0; } }
+  @keyframes a-blink   { 0%, 30% { opacity: 1; } 45%, 100% { opacity: .15; } }
+  @keyframes a-step    { 0%, 8% { opacity: .22; } 20%, 78% { opacity: 1; } 100% { opacity: .22; } }
+  @keyframes a-page    { 0%, 10% { transform: translateX(0); opacity: 1; } 45% { transform: translateX(60px); opacity: 0; }
+                         46%, 80% { transform: translateX(0); opacity: 0; } 100% { opacity: 1; } }
+  @keyframes a-book    { 0%, 35% { opacity: .55; } 55%, 85% { opacity: 1; } 100% { opacity: .55; } }
+  @keyframes a-twinkle { 0%, 100% { opacity: .15; } 50% { opacity: .7; } }
+  .card .pikt { display: block; width: 100%; max-width: 260px; height: auto; margin: 0 0 14px; }
+
+  /* Symbolerna på resten av sidan (20 november 2026). */
+  .step-side { display: grid; gap: 18px; min-width: 0; }
+  .step-side .pikt { display: block; width: 100%; max-width: 330px; height: auto; }
+  .pikt-rad { display: grid; gap: 4px; }
+  .pikt-t { margin: 0 0 16px; font: 500 12px/1.45 var(--sans); letter-spacing: .05em; color: var(--muted); max-width: 330px; }
+  .emblem { display: block; width: 112px; height: auto; margin: 0 0 18px; }
+  section { position: relative; }
+  @media (prefers-reduced-motion: no-preference) {
+    /* En ljuspunkt vandrar längs linjen mellan avsnitten, som en signal. */
+    section + section::before {
+      content: ""; position: absolute; top: -2px; left: 0; width: 26px; height: 3px; border-radius: 3px;
+      background: linear-gradient(90deg, rgba(242,169,59,0), var(--amber-2));
+      box-shadow: 0 0 10px rgba(242,169,59,.55);
+      animation: a-skarv 13s linear infinite;
+    }
+    section:nth-of-type(3n)::before { animation-delay: -4.5s; }
+    section:nth-of-type(3n+1)::before { animation-delay: -9s; }
+    .a-draw   { stroke-dasharray: 420; animation: a-draw 5.5s ease-in-out infinite; }
+    .a-travel { animation: a-travel 6s linear infinite; }
+    .a-scan   { animation: a-scan 5s ease-in-out infinite; }
+    .a-bob    { animation: a-bob 4s ease-in-out infinite; }
+    .a-breathe { animation: a-breathe 4.5s ease-in-out infinite; }
+    .a-ring, .a-ring2, .a-ring3 { animation: a-ring 3.6s ease-out infinite; }
+    .a-ring2 { animation-delay: 1.2s; } .a-ring3 { animation-delay: 2.4s; }
+    .a-return { animation: a-return 6s ease-in-out infinite; }
+    .a-rec    { animation: a-rec 1.6s ease-in-out infinite; }
+    .a-eq1, .a-eq2, .a-eq3, .a-eq4, .a-eq5 { transform-origin: 50% 100%; animation: a-eq 1.5s ease-in-out infinite; }
+    .a-eq2 { animation-delay: -.3s; } .a-eq3 { animation-delay: -.75s; }
+    .a-eq4 { animation-delay: -.45s; } .a-eq5 { animation-delay: -1.05s; }
+    .a-grow   { transform-origin: 50% 100%; animation: a-grow 6s ease-in-out infinite; }
+  }
+  @keyframes a-skarv  { 0% { left: 0; opacity: 0; } 6% { opacity: .9; } 94% { opacity: .9; } 100% { left: calc(100% - 26px); opacity: 0; } }
+  @keyframes a-draw   { 0% { stroke-dashoffset: 420; } 55%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -420; } }
+  @keyframes a-travel { 0% { transform: translateX(0); opacity: 0; } 8%, 88% { opacity: 1; } 100% { transform: translateX(190px); opacity: 0; } }
+  @keyframes a-scan   { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(96px); } }
+  @keyframes a-bob    { 0%, 100% { transform: translateY(3px); } 50% { transform: translateY(-5px); } }
+  @keyframes a-breathe { 0%, 100% { transform: scale(.96); } 50% { transform: scale(1.05); } }
+  @keyframes a-ring   { 0% { transform: scale(.25); opacity: .9; } 100% { transform: scale(1); opacity: 0; } }
+  @keyframes a-return { 0%, 10% { transform: translateX(0); } 45%, 60% { transform: translateX(120px); } 95%, 100% { transform: translateX(0); } }
+  @keyframes a-rec    { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+  @keyframes a-eq     { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+  @keyframes a-grow   { 0%, 10% { transform: scaleY(.15); } 60%, 90% { transform: scaleY(1); } 100% { transform: scaleY(.15); } }
+
+  :root { --amber: var(--barnsten); --amber-2: var(--glod); --line: var(--kant); --line-2: #574029;
+          --muted: var(--dampad); --surface: var(--panel); --ground: var(--rymd); --sunk: var(--djup);
+          --cold: #9DB8B4; --good: #A9C98A; --bad: #E3826A; --dim: var(--text); }
+  ol.sektorer li { position: relative; }
+  ol.sektorer li .pikt { position: absolute; right: 1.2rem; top: 50%; width: 92px; height: auto; margin-top: -22px; }
+  @media (min-width: 640px) { ol.sektorer li { padding-right: 130px; } }
+  @media (max-width: 639px) { ol.sektorer li .pikt { display: none; } }
+  .tre article .pikt { display: block; width: 150px; height: auto; margin: 0 0 14px; }
+  .gransen h3 { position: relative; }
+  .gransen h3 .pikt { position: absolute; right: 1.2rem; top: 50%; width: 84px; height: auto; margin-top: -19px; }
 </style>
 </head>
 <body>
@@ -225,6 +336,7 @@ footer a{color:var(--barnsten)}
 
 <section>
   <div class="spann">
+    <svg class="pikt emblem" viewBox="0 0 120 52" aria-hidden="true"><path class="l" d="M14 44 H106"/><path class="f" d="M36 44 a24 22 0 0 1 48 0 Z"/><g class="a-grow"><path class="lg" d="M60 44 V28"/><path class="gr" d="M60 30 q-9 -2 -11 -10 q9 0 11 10 Z M60 30 q9 -2 11 -10 q-9 0 -11 10 Z"/></g></svg>
     <h2>What it is</h2>
     <p class="underrad tek">A ship that became a place</p>
     <p>Ombra Prime left Earth a long time ago. Most of the people alive aboard
@@ -249,26 +361,27 @@ footer a{color:var(--barnsten)}
 
 <section class="tonad">
   <div class="brett">
+    <svg class="pikt emblem" viewBox="0 0 120 52" aria-hidden="true"><path class="l a-s1" d="M46 12 H74"/><path class="l a-s2" d="M34 20 H86"/><path class="l a-s3" d="M20 28 H100"/><path class="l a-s4" d="M34 36 H86"/><path class="l a-s5" d="M46 44 H74"/></svg>
     <h2>Eight sectors</h2>
     <p class="underrad tek">Top to bottom, bow to stern</p>
     <ol class="sektorer">
       <li><span class="nr tek">01</span><h3>The Pearl</h3>
-        <p>Biosphere and gene bank, under the dome. Vitalis is born here. Restricted access.</p></li>
+        <p>Biosphere and gene bank, under the dome. Vitalis is born here. Restricted access.</p><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><path class="l" d="M10 38 H82"/><path class="f" d="M24 38 a22 20 0 0 1 44 0 Z"/><g class="a-grow"><path class="lg" d="M46 38 V24"/><path class="gr" d="M46 26 q-8 -2 -10 -9 q8 0 10 9 Z M46 26 q8 -2 10 -9 q-8 0 -10 9 Z"/></g></svg></li>
       <li><span class="nr tek">02</span><h3>The Command Bridge</h3>
-        <p>Navigation and command. Glass everywhere.</p></li>
+        <p>Navigation and command. Glass everywhere.</p><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><circle class="f" cx="46" cy="22" r="16"/><g class="a-spin"><path class="g" d="M46 8 L50 22 L46 36 L42 22 Z"/></g><circle cx="46" cy="22" r="2" fill="var(--ground)"/></svg></li>
       <li><span class="nr tek">03</span><h3>EZ Aqua Core</h3>
-        <p>Mycology, aquaponics, mariculture. The food.</p></li>
+        <p>Mycology, aquaponics, mariculture. The food.</p><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><path class="a-flow" d="M8 16 q10 -8 19 0 t19 0 t19 0 t19 0" fill="none" stroke="var(--cold)" stroke-width="1.5" stroke-linecap="round"/><path class="a-flow" d="M8 30 q10 -8 19 0 t19 0 t19 0 t19 0" fill="none" stroke="var(--cold)" stroke-width="1.5" stroke-linecap="round"/></svg></li>
       <li><span class="nr tek">04</span><h3>Metropolis</h3>
-        <p>The city. Home to the hundred thousand.</p></li>
+        <p>The city. Home to the hundred thousand.</p><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><rect class="f2" x="12" y="22" width="10" height="16"/><rect class="g a-s1" x="15" y="26" width="4" height="4"/><rect class="f2" x="26" y="12" width="10" height="26"/><rect class="g a-s2" x="29" y="16" width="4" height="4"/><rect class="f2" x="40" y="26" width="10" height="12"/><rect class="g a-s3" x="43" y="30" width="4" height="4"/><rect class="f2" x="54" y="8" width="10" height="30"/><rect class="g a-s4" x="57" y="12" width="4" height="4"/><rect class="f2" x="68" y="18" width="10" height="20"/><rect class="g a-s5" x="71" y="22" width="4" height="4"/><path class="l" d="M8 38 H84"/></svg></li>
       <li><span class="nr tek">05</span><h3>The Hangar</h3>
-        <p>Transport. Force fields hold the atmosphere in.</p></li>
+        <p>Transport. Force fields hold the atmosphere in.</p><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><g class="a-bob"><ellipse class="f" cx="46" cy="22" rx="26" ry="7"/><path class="l" d="M34 17 a12 9 0 0 1 24 0"/></g><path class="l2" d="M30 38 H62"/></svg></li>
       <li><span class="nr tek">06</span><h3>The Crypt</h3>
-        <p>Industry, and Oris's domain. The Cathedral is down here.</p></li>
+        <p>Industry, and Oris's domain. The Cathedral is down here.</p><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><g class="a-spin"><circle class="f" cx="46" cy="22" r="11"/><path class="l" d="M57.0 22.0 L62.0 22.0"/><path class="l" d="M53.8 29.8 L57.3 33.3"/><path class="l" d="M46.0 33.0 L46.0 38.0"/><path class="l" d="M38.2 29.8 L34.7 33.3"/><path class="l" d="M35.0 22.0 L30.0 22.0"/><path class="l" d="M38.2 14.2 L34.7 10.7"/><path class="l" d="M46.0 11.0 L46.0 6.0"/><path class="l" d="M53.8 14.2 L57.3 10.7"/><circle class="l" cx="46" cy="22" r="4"/></g></svg></li>
       <li><span class="nr tek">07</span><h3>The Spire</h3>
-        <p>Classified research, under Mr. Splendid.</p></li>
+        <p>Classified research, under Mr. Splendid.</p><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><path class="f" d="M38 40 L46 4 L54 40 Z"/><path class="l2" d="M28 40 L33 20 L38 40 M54 40 L59 24 L64 40"/><circle class="g a-pulse" cx="46" cy="4" r="2.6"/></svg></li>
       <li><span class="nr tek">08</span><h3>The Breather</h3>
         <p>The terraforming engine, and the Heart Chamber where The Eternal
-           Dreamers sleep. The ship's purpose — the machine it was built around.</p></li>
+           Dreamers sleep. The ship's purpose — the machine it was built around.</p><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><circle class="a-ring" cx="46" cy="22" r="20" fill="none" stroke="var(--cold)" stroke-width="1.4"/><circle class="a-ring2" cx="46" cy="22" r="20" fill="none" stroke="var(--cold)" stroke-width="1.4"/><circle class="a-ring3" cx="46" cy="22" r="20" fill="none" stroke="var(--cold)" stroke-width="1.4"/><circle cx="46" cy="22" r="3.6" fill="var(--cold)"/></svg></li>
     </ol>
     <div class="vev">
       <h3>Root Weave — »The Gut«</h3>
@@ -283,21 +396,25 @@ footer a{color:var(--barnsten)}
 
 <section>
   <div class="brett">
+    <svg class="pikt emblem" viewBox="0 0 120 52" aria-hidden="true"><path class="l2" d="M60 10 L30 44 H90 Z"/><circle class="f a-s1" cx="60" cy="10" r="8"/><circle class="f a-s2" cx="30" cy="44" r="8"/><circle class="f a-s3" cx="90" cy="44" r="8"/></svg>
     <h2>Three who share power</h2>
     <p class="underrad tek">And all three know it</p>
     <div class="tre">
       <article>
+        <svg class="pikt" viewBox="0 0 150 60" aria-hidden="true"><circle class="f" cx="75" cy="30" r="22"/><path class="l2" d="M75 8 V52 M53 30 H97"/><g class="a-spin"><path class="g" d="M75 12 L80 30 L75 48 L70 30 Z"/></g></svg>
         <h3>Alexander Atreus</h3>
         <p class="roll tek">Commander</p>
         <p>Leads navigation. The ship moves on his word — but only the ship.</p>
       </article>
       <article>
+        <svg class="pikt" viewBox="0 0 150 60" aria-hidden="true"><rect class="f" x="52" y="22" width="46" height="32" rx="3"/><path class="l" d="M62 22 v-8 a13 13 0 0 1 26 0 v8"/><circle class="g a-pulse" cx="75" cy="36" r="4"/><path class="l" d="M75 40 V47"/></svg>
         <h3>Mr. Splendid</h3>
         <p class="roll tek">Owner</p>
         <p>Controls the research in The Spire. He believes he is saving
            humanity. Perhaps he is.</p>
       </article>
       <article>
+        <svg class="pikt" viewBox="0 0 150 60" aria-hidden="true"><circle class="l2" cx="75" cy="30" r="24"/><circle class="f" cx="75" cy="30" r="12"/><circle class="g a-pulse" cx="75" cy="30" r="4"/><g class="a-spin"><circle cx="75" cy="30" r="27" fill="none"/><circle class="g" cx="75" cy="6" r="2.6"/><circle class="g" cx="99" cy="30" r="2" opacity=".6"/><circle class="g" cx="51" cy="30" r="2" opacity=".6"/></g></svg>
         <h3>Oris</h3>
         <p class="roll tek">The ship's mind</p>
         <p>Runs the systems from the Cathedral, deep in The Crypt. She does not
@@ -313,11 +430,12 @@ footer a{color:var(--barnsten)}
 
 <section class="tonad">
   <div class="brett">
+    <svg class="pikt emblem" viewBox="0 0 120 52" aria-hidden="true"><circle class="f" cx="36" cy="26" r="16"/><path class="l a-pulse" d="M28 26 l6 6 l11 -12"/><circle class="l2" cx="84" cy="26" r="16"/><path d="M77 19 l14 14 M91 19 l-14 14" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round"/></svg>
     <h2>What the technology can do</h2>
     <p class="underrad tek">And, more importantly, what it cannot</p>
 
     <div class="gransen">
-      <h3>Vitalis</h3>
+      <h3><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><path class="l a-beat" d="M4 22 H26 L33 8 L42 36 L49 22 H88"/></svg>Vitalis</h3>
       <div class="gar"><span class="tek">Can</span>
         <p>The life energy born in The Pearl's ecosystem and channelled
            through the ship. It can be measured, channelled, stored — and run
@@ -328,7 +446,7 @@ footer a{color:var(--barnsten)}
     </div>
 
     <div class="gransen">
-      <h3>The Breather</h3>
+      <h3><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><circle class="a-ring" cx="46" cy="22" r="19" fill="none" stroke="var(--cold)" stroke-width="1.4"/><circle class="a-ring2" cx="46" cy="22" r="19" fill="none" stroke="var(--cold)" stroke-width="1.4"/><circle class="a-ring3" cx="46" cy="22" r="19" fill="none" stroke="var(--cold)" stroke-width="1.4"/><circle cx="46" cy="22" r="3.4" fill="var(--cold)"/></svg>The Breather</h3>
       <div class="gar"><span class="tek">Can</span>
         <p>Terraform dead worlds by seeding synthetic atmosphere and starting
            ecosystems.</p></div>
@@ -339,7 +457,7 @@ footer a{color:var(--barnsten)}
     </div>
 
     <div class="gransen">
-      <h3>The Aegis mycelium hull</h3>
+      <h3><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><g class="a-breathe"><polygon class="f" points="61.6,13.0 61.6,31.0 46.0,40.0 30.4,31.0 30.4,13.0 46.0,4.0"/><polygon class="l2" points="54.7,17.0 54.7,27.0 46.0,32.0 37.3,27.0 37.3,17.0 46.0,12.0"/></g></svg>The Aegis mycelium hull</h3>
       <div class="gar"><span class="tek">Can</span>
         <p>Heal itself. The hull is partly alive and repairs its own damage
            with nutrients from the Vitalis flow.</p></div>
@@ -349,7 +467,7 @@ footer a{color:var(--barnsten)}
     </div>
 
     <div class="gransen">
-      <h3>Oris</h3>
+      <h3><svg class="pikt" viewBox="0 0 92 44" aria-hidden="true"><circle class="f" cx="46" cy="22" r="8"/><circle class="g a-pulse" cx="46" cy="22" r="3"/><path class="l2 a-s1" d="M46 22 L12 8"/><rect class="f2 a-s1" x="7" y="3" width="10" height="10" rx="1.5"/><path class="l2 a-s2" d="M46 22 L80 8"/><rect class="f2 a-s2" x="75" y="3" width="10" height="10" rx="1.5"/><path class="l2 a-s3" d="M46 22 L12 36"/><rect class="f2 a-s3" x="7" y="31" width="10" height="10" rx="1.5"/><path class="l2 a-s4" d="M46 22 L80 36"/><rect class="f2 a-s4" x="75" y="31" width="10" height="10" rx="1.5"/></svg>Oris</h3>
       <div class="gar"><span class="tek">Can</span>
         <p>Run life support, build robots, maintain the ship — and refuse,
            misunderstand and stay silent.</p></div>
@@ -367,6 +485,7 @@ footer a{color:var(--barnsten)}
 
 <section>
   <div class="spann">
+    <svg class="pikt emblem" viewBox="0 0 120 52" aria-hidden="true"><g class="a-s1"><circle class="f" cx="20" cy="22" r="6"/><path class="l" d="M11 44 q0 -12 9 -12 q9 0 9 12"/></g><g class="a-s2"><circle class="f" cx="40" cy="22" r="6"/><path class="l" d="M31 44 q0 -12 9 -12 q9 0 9 12"/></g><g class="a-s3"><circle class="f" cx="60" cy="22" r="6"/><path class="l" d="M51 44 q0 -12 9 -12 q9 0 9 12"/></g><g class="a-s4"><circle class="f" cx="80" cy="22" r="6"/><path class="l" d="M71 44 q0 -12 9 -12 q9 0 9 12"/></g><g class="a-s5"><circle class="f" cx="100" cy="22" r="6"/><path class="l" d="M91 44 q0 -12 9 -12 q9 0 9 12"/></g></svg>
     <h2>Life aboard</h2>
     <p class="underrad tek">What they take for granted</p>
     <ul class="streck">
@@ -397,6 +516,7 @@ footer a{color:var(--barnsten)}
 
 <section class="tonad">
   <div class="spann">
+    <svg class="pikt emblem" viewBox="0 0 120 52" aria-hidden="true"><path class="l" d="M60 48 L52 20 H68 Z M60 20 V10"/><circle class="g" cx="60" cy="9" r="3"/><path class="l a-s1" d="M44 2 a14 14 0 0 0 0 16 M76 2 a14 14 0 0 1 0 16"/><path class="l a-s2" d="M35 2 a22 22 0 0 0 0 18 M85 2 a22 22 0 0 1 0 18"/><path class="l a-s3" d="M26 2 a30 30 0 0 0 0 20 M94 2 a30 30 0 0 1 0 20"/></svg>
     <h2>Follow the world</h2>
     <p class="underrad tek">Live, while it is being written</p>
     <ul class="streck">
